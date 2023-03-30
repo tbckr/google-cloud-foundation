@@ -1,4 +1,4 @@
-# Google Cloud Foundation (Personal Edition) (Work in Progress)
+# Google Cloud Foundation (Personal Edition & Work in Progress)
 
 This repository contains my customized, opinionated version of the Google Cloud Foundation based on the Cloud Foundation
 Toolkit (CFT). Please be aware that this is a personal adaptation and may not suit everyone's needs.
