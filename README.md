@@ -6,7 +6,13 @@ Toolkit (CFT). Please be aware that this is a personal adaptation and may not su
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <!-- param::isNotitle::true:: -->
+
+- [Overview](#overview)
+- [Motivation](#motivation)
+- [Disclaimer](#disclaimer)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Overview
