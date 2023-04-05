@@ -58,7 +58,3 @@ terraform {
 }
 EOF
 }
-
-dependency "0-bootstrap" {
-  config_path = "./0-bootstrap"
-}
