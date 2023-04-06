@@ -24,22 +24,27 @@ include "root" {
 }
 
 dependency "seed" {
-  config_path = "${get_terragrunt_dir()}/../0-bootstrap"
-}
-
-generate "backend" {
-  path      = "backend.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-terraform {
-  backend "gcs" {
-    bucket = "${dependency.seed.outputs.gcs_bucket_tfstate}"
-    prefix = "terraform/org/state"
-    impersonate_service_account = "${dependency.seed.outputs.organization_step_terraform_service_account_email}"
+  config_path  = "${get_terragrunt_dir()}/../0-bootstrap"
+  mock_outputs = {
+    gcs_bucket_tfstate                                = "REPLACE_ME"
+    organization_step_terraform_service_account_email = "REPLACE_ME"
   }
 }
-EOF
-}
+
+# Uncomment this block to enable the backend and generate the backend.tf file.
+#generate "backend" {
+#  path      = "backend.tf"
+#  if_exists = "overwrite_terragrunt"
+#  contents  = <<EOF
+#terraform {
+#  backend "gcs" {
+#    bucket = "${dependency.seed.outputs.gcs_bucket_tfstate}"
+#    prefix = "terraform/org/state"
+#    impersonate_service_account = "${dependency.seed.outputs.organization_step_terraform_service_account_email}"
+#  }
+#}
+#EOF
+#}
 
 generate "provider" {
   path      = "provider.tf"

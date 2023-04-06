@@ -40,12 +40,6 @@ variable "project_budget" {
     base_network_budget_amount        = optional(number, 1000)
     base_network_alert_spent_percents = optional(list(number), [0.5, 0.75, 0.9, 0.95])
     base_network_alert_pubsub_topic   = optional(string, null)
-    monitoring_budget_amount          = optional(number, 1000)
-    monitoring_alert_spent_percents   = optional(list(number), [0.5, 0.75, 0.9, 0.95])
-    monitoring_alert_pubsub_topic     = optional(string, null)
-    secret_budget_amount              = optional(number, 1000)
-    secret_alert_spent_percents       = optional(list(number), [0.5, 0.75, 0.9, 0.95])
-    secret_alert_pubsub_topic         = optional(string, null)
   })
   default = {}
 }

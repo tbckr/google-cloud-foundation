@@ -23,8 +23,38 @@ include "root" {
   path = find_in_parent_folders()
 }
 
-include "stage" {
-  path = find_in_parent_folders("stage.hcl")
+dependency "seed" {
+  config_path  = "${get_terragrunt_dir()}/../../0-bootstrap"
+  mock_outputs = {
+    gcs_bucket_tfstate                               = "REPLACE_ME"
+    environment_step_terraform_service_account_email = "REPLACE_ME"
+  }
+}
+
+# Uncomment this block to enable the backend and generate the backend.tf file.
+#generate "backend" {
+#  path      = "backend.tf"
+#  if_exists = "overwrite_terragrunt"
+#  contents  = <<EOF
+#terraform {
+#  backend "gcs" {
+#    bucket = "${dependency.seed.outputs.gcs_bucket_tfstate}"
+#    prefix = "terraform/${path_relative_to_include()}/state"
+#    impersonate_service_account = "${dependency.seed.outputs.environment_step_terraform_service_account_email}"
+#  }
+#}
+#EOF
+#}
+
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+provider "google-beta" {
+  user_project_override = true
+  impersonate_service_account = "${dependency.seed.outputs.environment_step_terraform_service_account_email}"
+}
+EOF
 }
 
 terraform {
@@ -39,7 +69,5 @@ inputs = {
 
   project_budget = {
     base_network_budget_amount = 10
-    monitoring_budget_amount   = 10
-    secret_budget_amount       = 10
   }
 }

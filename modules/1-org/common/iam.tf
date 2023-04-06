@@ -183,13 +183,6 @@ resource "google_project_iam_member" "scc_admin" {
   member  = "group:${var.gcp_groups.scc_admin}"
 }
 
-resource "google_project_iam_member" "global_secrets_admin" {
-  count   = var.gcp_groups.global_secrets_admin != null ? 1 : 0
-  project = module.org_secrets.project_id
-  role    = "roles/secretmanager.admin"
-  member  = "group:${var.gcp_groups.global_secrets_admin}"
-}
-
 /******************************************
  Privileged accounts permissions according to SFB (Section 6.3 - Privileged identities)
 *****************************************/
