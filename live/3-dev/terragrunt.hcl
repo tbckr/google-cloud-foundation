@@ -24,26 +24,26 @@ include "root" {
 }
 
 dependency "seed" {
-  config_path  = "${get_terragrunt_dir()}/../../0-bootstrap"
+  config_path  = "${get_terragrunt_dir()}/../0-bootstrap"
   mock_outputs = {
     gcs_bucket_tfstate                            = "REPLACE_ME"
     networks_step_terraform_service_account_email = "REPLACE_ME"
   }
 }
 
-generate "backend" {
-  path      = "backend.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-terraform {
-  backend "gcs" {
-    bucket = "${dependency.seed.outputs.gcs_bucket_tfstate}"
-    prefix = "terraform/${path_relative_to_include()}/state"
-    impersonate_service_account = "${dependency.seed.outputs.networks_step_terraform_service_account_email}"
-  }
-}
-EOF
-}
+#generate "backend" {
+#  path      = "backend.tf"
+#  if_exists = "overwrite_terragrunt"
+#  contents  = <<EOF
+#terraform {
+#  backend "gcs" {
+#    bucket = "${dependency.seed.outputs.gcs_bucket_tfstate}"
+#    prefix = "terraform/${path_relative_to_include()}/state"
+#    impersonate_service_account = "${dependency.seed.outputs.networks_step_terraform_service_account_email}"
+#  }
+#}
+#EOF
+#}
 
 generate "provider" {
   path      = "provider.tf"
@@ -56,12 +56,14 @@ provider "google-beta" {
 EOF
 }
 
-dependency "envs" {
-  config_path = "${get_terragrunt_dir()}/../../2-envs/dev"
+dependency "env" {
+  config_path  = "${get_terragrunt_dir()}/../2-dev"
+  skip_outputs = true
 }
 
 dependency "common" {
-  config_path = "${get_terragrunt_dir()}/../common"
+  config_path  = "${get_terragrunt_dir()}/../3-common"
+  skip_outputs = true
 }
 
 terraform {
@@ -86,7 +88,7 @@ locals {
 inputs = {
   remote_state_bucket = dependency.seed.outputs.gcs_bucket_tfstate
 
-  domain = var.domain
+  domain = ""
 
   env              = local.env
   environment_code = substr(local.env, 0, 1)
@@ -100,24 +102,16 @@ inputs = {
   nat_enabled = true
   subnets     = [
     {
-      subnet_name           = "sb-${var.environment_code}-shared-base-${var.default_region1}"
-      subnet_ip             = local.base_subnet_primary_ranges[local.default_region1]
+      subnet_name           = "sb-${local.environment_code}-shared-base-${local.default_region1}"
+      subnet_ip             = local.subnet_primary_ranges[local.default_region1]
       subnet_region         = local.default_region1
       subnet_private_access = "true"
       subnet_flow_logs      = true
-      description           = "First ${var.env} subnet example."
+      description           = "First ${local.env} subnet example."
     },
-    {
-      subnet_name           = "sb-${var.environment_code}-shared-base-${var.default_region2}"
-      subnet_ip             = local.base_subnet_primary_ranges[local.default_region2]
-      subnet_region         = local.default_region2
-      subnet_private_access = "true"
-      subnet_flow_logs      = true
-      description           = "Second ${var.env} subnet example."
-    }
   ]
   secondary_ranges = {
-    "sb-${var.environment_code}-shared-base-${var.default_region1}" = var.base_subnet_secondary_ranges[var.default_region1]
+    "sb-${local.environment_code}-shared-base-${local.default_region1}" = local.subnet_secondary_ranges[local.default_region1]
   }
   private_service_cidr       = local.private_service_cidr
   private_service_connect_ip = "10.2.64.5"

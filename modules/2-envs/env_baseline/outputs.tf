@@ -24,11 +24,6 @@ output "base_shared_vpc_project_id" {
   value       = module.base_shared_vpc_host_project.project_id
 }
 
-output "env_secrets_project_id" {
-  description = "Project for environment secrets."
-  value       = module.env_secrets.project_id
-}
-
 output "assured_workload_id" {
   description = "Assured Workload ID."
   value       = var.assured_workload_configuration.enabled ? google_assured_workloads_workload.workload[0].id : ""

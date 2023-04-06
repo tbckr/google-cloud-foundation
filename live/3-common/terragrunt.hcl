@@ -24,14 +24,13 @@ include "root" {
 }
 
 dependency "seed" {
-  config_path  = "${get_terragrunt_dir()}/../../0-bootstrap"
+  config_path  = "${get_terragrunt_dir()}/../0-bootstrap"
   mock_outputs = {
-    gcs_bucket_tfstate                               = "REPLACE_ME"
-    environment_step_terraform_service_account_email = "REPLACE_ME"
+    gcs_bucket_tfstate                            = "REPLACE_ME"
+    networks_step_terraform_service_account_email = "REPLACE_ME"
   }
 }
 
-# Uncomment this block to enable the backend and generate the backend.tf file.
 #generate "backend" {
 #  path      = "backend.tf"
 #  if_exists = "overwrite_terragrunt"
@@ -40,7 +39,7 @@ dependency "seed" {
 #  backend "gcs" {
 #    bucket = "${dependency.seed.outputs.gcs_bucket_tfstate}"
 #    prefix = "terraform/${path_relative_to_include()}/state"
-#    impersonate_service_account = "${dependency.seed.outputs.environment_step_terraform_service_account_email}"
+#    impersonate_service_account = "${dependency.seed.outputs.networks_step_terraform_service_account_email}"
 #  }
 #}
 #EOF
@@ -52,22 +51,27 @@ generate "provider" {
   contents  = <<EOF
 provider "google-beta" {
   user_project_override = true
-  impersonate_service_account = "${dependency.seed.outputs.environment_step_terraform_service_account_email}"
+  impersonate_service_account = "${dependency.seed.outputs.networks_step_terraform_service_account_email}"
 }
 EOF
 }
 
 terraform {
-  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/2-envs/env_baseline"
+  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/3-networks/common"
 }
 
 inputs = {
   remote_state_bucket = dependency.seed.outputs.gcs_bucket_tfstate
 
-  env              = "development"
-  environment_code = "d"
-
-  project_budget = {
-    base_network_budget_amount = 10
-  }
+  domain                       = "example.com."
+  target_name_server_addresses = [
+    {
+      ipv4_address    = "8.8.8.8",
+      forwarding_path = "default"
+    },
+    {
+      ipv4_address    = "8.8.4.4",
+      forwarding_path = "default"
+    }
+  ]
 }
