@@ -28,7 +28,7 @@ include "stage" {
 }
 
 dependency "envs" {
-  config_path = "../../2-envs"
+  config_path = "${get_terragrunt_dir()}/../../1-org"
 }
 
 terraform {

@@ -20,7 +20,7 @@
 // SPDX-License-Identifier: MIT
 
 dependency "seed" {
-  config_path = "../0-bootstrap"
+  config_path = "${get_terragrunt_dir()}/../0-bootstrap"
 }
 
 generate "backend" {

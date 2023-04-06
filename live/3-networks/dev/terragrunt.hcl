@@ -28,7 +28,7 @@ include "stage" {
 }
 
 dependency "common" {
-  config_path = "../common"
+  config_path = "${get_terragrunt_dir()}/../common"
 }
 
 terraform {
