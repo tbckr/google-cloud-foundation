@@ -20,12 +20,12 @@ organization-level logging, and baseline security settings through
 organizational policies.</td>
 </tr>
 <tr>
-<td><a href="../../modules/2-environments"><span style="white-space: nowrap;">2-environments</span></a></td>
+<td><a href="../../modules/2-envs"><span style="white-space: nowrap;">2-environments</span></a></td>
 <td>Sets up development, non-production, and production environments within the
 Google Cloud organization that you've created.</td>
 </tr>
 <tr>
-<td><a href="../../modules/3-networks-dual-svpc">3-networks-dual-svpc</a></td>
+<td><a href="../../modules/3-networks">3-networks-dual-svpc</a></td>
 <td>Sets up base and restricted shared VPCs with default DNS, NAT (optional),
 Private Service networking, VPC service controls, on-premises Dedicated
 Interconnect, and baseline firewall rules for each environment. It also sets

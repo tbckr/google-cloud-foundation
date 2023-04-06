@@ -215,7 +215,7 @@ The error means that the Terraform state of the `0-bootstrap` stage was not copi
 
 **Solution:**
 
-Follow the instructions at the end of the [Deploying with Cloud Build](../../modules/0-bootstrap/base/README.md#deploying-with-cloud-build) section in the `0-bootstrap` README to copy the Terraform state to the Cloud Storage bucket created in stage `0-bootstrap` and retry planning/applying the stage you are deploying.
+Follow the instructions at the end of the [Deploying with Cloud Build](../../modules/0-bootstrap/seed/README.md#deploying-with-cloud-build) section in the `0-bootstrap` README to copy the Terraform state to the Cloud Storage bucket created in stage `0-bootstrap` and retry planning/applying the stage you are deploying.
 
 ### Error: Error adding network peering
 

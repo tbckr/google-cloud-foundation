@@ -19,19 +19,31 @@
 //
 // SPDX-License-Identifier: MIT
 
-generate "versions" {
-  path      = "versions.tf"
+dependency "seed" {
+  config_path = "../0-bootstrap"
+}
+
+generate "backend" {
+  path      = "backend.tf"
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 terraform {
-  required_version = ">= 0.13"
-  required_providers {
-    google = {
-      // version 4.31.0 removed because of issue https://github.com/hashicorp/terraform-provider-google/issues/12226
-      source  = "hashicorp/google"
-      version = ">= 3.50, != 4.31.0"
-    }
+  backend "gcs" {
+    bucket = "${dependency.seed.outputs.gcs_bucket_tfstate}"
+    prefix = "terraform/${path_relative_to_include()}/state"
+    impersonate_service_account = "${dependency.seed.outputs.environment_step_terraform_service_account_email}"
   }
+}
+EOF
+}
+
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+provider "google-beta" {
+  user_project_override = true
+  impersonate_service_account = "${dependency.seed.outputs.environment_step_terraform_service_account_email}"
 }
 EOF
 }

@@ -19,19 +19,34 @@
 //
 // SPDX-License-Identifier: MIT
 
-generate "versions" {
-  path      = "versions.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
-    google = {
-      // version 4.31.0 removed because of issue https://github.com/hashicorp/terraform-provider-google/issues/12226
-      source  = "hashicorp/google"
-      version = ">= 3.50, != 4.31.0"
-    }
-  }
+include "root" {
+  path = find_in_parent_folders()
 }
-EOF
+
+include "stage" {
+  path = find_in_parent_folders("stage.hcl")
+}
+
+dependency "envs" {
+  config_path = "../../2-envs"
+}
+
+terraform {
+  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/3-networks/common"
+}
+
+inputs = {
+  remote_state_bucket = dependency.seed.outputs.gcs_bucket_tfstate
+
+  domain                       = "example.com."
+  target_name_server_addresses = [
+    {
+      ipv4_address    = "8.8.8.8",
+      forwarding_path = "default"
+    },
+    {
+      ipv4_address    = "8.8.4.4",
+      forwarding_path = "default"
+    }
+  ]
 }
