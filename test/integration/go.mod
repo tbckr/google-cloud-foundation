@@ -3,10 +3,10 @@ module test/integration
 go 1.18
 
 require (
-	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.5.0
-	github.com/gruntwork-io/terratest v0.41.12
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.5.1
+	github.com/gruntwork-io/terratest v0.41.16
 	github.com/stretchr/testify v1.8.2
-	github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230404054849-be968964d845
+	github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230407152606-37bad63406f3
 	github.com/tidwall/gjson v1.14.4
 	golang.org/x/oauth2 v0.6.0
 )
@@ -36,7 +36,7 @@ require (
 	github.com/googleapis/gax-go/v2 v2.7.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
-	github.com/hashicorp/go-getter v1.7.0 // indirect
+	github.com/hashicorp/go-getter v1.7.1 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
 	github.com/hashicorp/go-version v1.6.0 // indirect
