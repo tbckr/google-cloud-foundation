@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2023 Tim <tbckr>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -19,26 +20,5 @@
 #
 # SPDX-License-Identifier: MIT
 
-name: 'Dependency Review'
 
-on:
-  pull_request:
-    branches:
-      - main
-
-concurrency:
-  group: ${{ github.workflow }}-$${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
-
-jobs:
-  dependency-review:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v3
-      - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v3
-        with:
-          allow-licenses: BSD-2-Clause, BSD-3-Clause, MIT, Apache-2.0, MPL-2.0, ISC
+terragrunt "$@" --terragrunt-source ../..//modules/0-bootstrap/seed
