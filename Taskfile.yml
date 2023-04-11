@@ -56,19 +56,74 @@ tasks:
         -ignore "original-foundation/**" \
         .
 
-  fmt-check:
+  go:prepare:
+    desc: Install dependencies
+    dir: test/integration
+    cmds:
+      - go mod tidy
+
+  go:fmt:
+    desc: gofumpt all code
+    dir: test/integration
+    cmds:
+      - gofumpt -w -l .
+
+  go:lint:
+    desc: Lint the code with golangci-lint
+    dir: test/integration
+    cmds:
+      - golangci-lint run ./...
+
+  go:
+    desc: Run all go checks
+    cmds:
+      - task: go:prepare
+      - task: go:fmt
+      - task: go:lint
+
+  tf:fmt:
     desc: Format all files
     cmds:
-      - terraform fmt -recursive -check
+      - terraform fmt -recursive
 
-  lint:
+  tf:lint:
     desc: Lint all files
     cmds:
       - tflint --init
       - tflint --config .tflint.hcl
 
+  tf:test:
+    desc: Run terratest tests
+    dir: test/integration
+    vars:
+      TEST_OPTIONS: '{{default "" .TEST_OPTIONS}}'
+      SOURCE_FILES: '{{default "./..." .SOURCE_FILES}}'
+      TEST_PATTERN: '{{default "." .TEST_PATTERN}}'
+    cmds:
+      - go test {{.TEST_OPTIONS}} -failfast {{.SOURCE_FILES}} -run {{.TEST_PATTERN}} -timeout 30m
+
+  tf:
+    desc: Run all terraform checks
+    cmds:
+      - task: tf:fmt
+      - task: tf:lint
+      - task: tf:test
+
   ci:
     desc: Run all CI checks
     cmds:
-      - task: fmt-check
-      - task: lint
+      - task: go
+      - task: tf
+
+  ci:pull-request:
+    desc: Run all CI checks for a pull request
+    cmds:
+      - task: go:fmt
+      - task: go:lint
+      - task: tf:fmt
+      - task: tf:lint
+
+  default:
+    desc: Runs the default tasks
+    cmds:
+      - task: ci

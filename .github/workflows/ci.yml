@@ -72,7 +72,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
         name: Setup Terraform
 
-      - uses: autero1/action-terragrunt@v1.3.1
+      - uses: autero1/action-terragrunt@v1
         name: Setup Terragrunt
         with:
           terragrunt_version: latest
@@ -88,7 +88,14 @@ jobs:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Run ci tests
+      # Run ci:pull-request tests, if it is a PR
+      - name: Run PR CI tests
+        if: github.event_name == 'pull_request'
+        run: |
+          task ci:pull-request
+
+      # Run ci tests, if it is not a PR
       - name: Run CI tests
+        if: github.event_name != 'pull_request'
         run: |
           task ci
