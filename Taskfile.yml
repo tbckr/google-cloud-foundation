@@ -55,3 +55,20 @@ tasks:
         -ignore ".task/**" \
         -ignore "original-foundation/**" \
         .
+
+  fmt-check:
+    desc: Format all files
+    cmds:
+      - terraform fmt -recursive -check
+
+  lint:
+    desc: Lint all files
+    cmds:
+      - tflint --init
+      - tflint --config .tflint.hcl
+
+  ci:
+    desc: Run all CI checks
+    cmds:
+      - task: fmt-check
+      - task: lint
