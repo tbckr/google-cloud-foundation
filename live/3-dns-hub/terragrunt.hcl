@@ -56,8 +56,12 @@ provider "google-beta" {
 EOF
 }
 
+dependency "org" {
+  config_path = "${get_terragrunt_dir()}/../1-org"
+}
+
 terraform {
-  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/3-networks/common"
+  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/3-networks/dns-hub"
 }
 
 inputs = {

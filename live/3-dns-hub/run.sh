@@ -21,4 +21,4 @@
 # SPDX-License-Identifier: MIT
 
 
-terragrunt "$@" --terragrunt-source "../..//modules/3-networks/common"
+terragrunt "$@" --terragrunt-source "../..//modules/3-networks/dns-hub"
