@@ -6,7 +6,7 @@ require (
 	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.5.1
 	github.com/gruntwork-io/terratest v0.41.16
 	github.com/stretchr/testify v1.8.2
-	github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230407152606-37bad63406f3
+	github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230411050750-c5615ecdd03d
 	github.com/tidwall/gjson v1.14.4
 	golang.org/x/oauth2 v0.6.0
 )
