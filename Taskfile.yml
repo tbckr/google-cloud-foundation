@@ -32,7 +32,7 @@ tasks:
       - python3 -m pip install --upgrade --user pre-commit
       - pre-commit install
 
-  setup:tools:
+  setup:go-tools:
     desc: Install tools
     preconditions:
       - which go
@@ -44,7 +44,7 @@ tasks:
     desc: Setup development environment
     cmds:
       - task: setup:precommit
-      - task: setup:tools
+      - task: setup:go-tools
 
   license-header:
     desc: Add license header to all files
