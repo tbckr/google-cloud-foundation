@@ -8,7 +8,7 @@ require (
 	github.com/stretchr/testify v1.8.2
 	github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230411050750-c5615ecdd03d
 	github.com/tidwall/gjson v1.14.4
-	golang.org/x/oauth2 v0.6.0
+	golang.org/x/oauth2 v0.7.0
 )
 
 require (
@@ -61,9 +61,9 @@ require (
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/crypto v0.6.0 // indirect
 	golang.org/x/mod v0.8.0 // indirect
-	golang.org/x/net v0.8.0 // indirect
-	golang.org/x/sys v0.6.0 // indirect
-	golang.org/x/text v0.8.0 // indirect
+	golang.org/x/net v0.9.0 // indirect
+	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/text v0.9.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.110.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
