@@ -53,5 +53,4 @@ tasks:
         addlicense -c "Tim <tbckr>" -l MIT -s -v \
         -ignore ".idea/**" \
         -ignore ".task/**" \
-        -ignore "original-foundation/**" \
         .
