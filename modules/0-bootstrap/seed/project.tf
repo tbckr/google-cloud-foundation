@@ -66,27 +66,15 @@ module "seed_bootstrap" {
 
   activate_apis = [
     "serviceusage.googleapis.com",
-    "servicenetworking.googleapis.com",
-    "cloudkms.googleapis.com",
-    "compute.googleapis.com",
-    "logging.googleapis.com",
-    "bigquery.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "cloudbilling.googleapis.com",
-    "cloudbuild.googleapis.com",
     "iam.googleapis.com",
     "admin.googleapis.com",
-    "appengine.googleapis.com",
     "storage-api.googleapis.com",
-    "monitoring.googleapis.com",
-    "pubsub.googleapis.com",
-    "securitycenter.googleapis.com",
     "accesscontextmanager.googleapis.com",
     "billingbudgets.googleapis.com",
     "essentialcontacts.googleapis.com",
-    "assuredworkloads.googleapis.com",
   ]
 
   sa_org_iam_permissions = []
 }
-
