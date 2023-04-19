@@ -53,6 +53,11 @@ output "gcs_bucket_tfstate" {
   value       = module.seed_bootstrap.gcs_bucket_tfstate
 }
 
+output "tfstate_prefix_seed" {
+  description = "Prefix in state bucket used for storing terraform state for Foundations Pipelines in Seed Project."
+  value       = "terraform/0-seed/state"
+}
+
 output "common_config" {
   description = "Common configuration data to be used in other steps."
   value       = {
