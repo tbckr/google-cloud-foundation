@@ -120,6 +120,15 @@ resource "google_service_account" "terraform-env-sa" {
   display_name = each.value
 }
 
+# Allow gcp org admins to impersonate the service accounts to allow local plan execution
+resource "google_service_account_iam_member" "terraform-env-sa-token-creator" {
+  for_each = google_service_account.terraform-env-sa
+
+  service_account_id = each.value.name
+  role               = "roles/iam.serviceAccountTokenCreator"
+  member             = "group:${var.group_org_admins}"
+}
+
 module "org_iam_member" {
   source   = "../parent-iam-member"
   for_each = local.granular_sa_org_level_roles
