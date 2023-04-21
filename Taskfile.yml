@@ -58,6 +58,11 @@ tasks:
         -ignore "**/.terragrunt-cache/**" \
         .
 
+  clean:
+    desc: Clean up
+    cmds:
+      - rm changelog.yml
+
   changelog:
     desc: Updates CHANGELOG.md
     vars:
