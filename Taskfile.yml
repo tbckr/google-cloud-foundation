@@ -39,6 +39,8 @@ tasks:
     cmds:
       - go install github.com/google/addlicense@latest
       # - go install github.com/terraform-linters/tflint@latest
+      - go install github.com/goreleaser/chglog/cmd/chglog@latest
+      - go install github.com/caarlos0/svu@latest
 
   setup:
     desc: Setup development environment
@@ -53,4 +55,24 @@ tasks:
         addlicense -c "Tim <tbckr>" -l MIT -s -v \
         -ignore ".idea/**" \
         -ignore ".task/**" \
+        -ignore "**/.terragrunt-cache/**" \
         .
+
+  chglog:
+    desc: Initialize chglog configuration
+    cmds:
+      - chglog config
+      - chglog init
+
+  release:
+    desc: Create a new tag with new semantic version and update CHANGELOG.md
+    vars:
+      NEXT:
+        sh: svu n
+    cmds:
+      - chglog add --version {{.NEXT}}
+      - "chglog format --template-file \".github/CHANGELOG.tmpl\" --output CHANGELOG.md"
+      - "git commit -m \"chore: update CHANGELOG.md\""
+      - git push
+      - git tag {{.NEXT}}
+      - git push --tags
