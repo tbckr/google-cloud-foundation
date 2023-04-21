@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0 (2023-04-21)
+
+- feat: add clean task ([211daba7](https://github.com/tbckr/google-cloud-foundation/commit/211daba7865cbce0765998e20dcf8e9931f982e2))
+
 ## 0.1.0 (2023-04-21)
 
 - fix: git add changelog file on release ([67675357](https://github.com/tbckr/google-cloud-foundation/commit/67675357eef222ee7eee5e10f50ec0931ed30120))
