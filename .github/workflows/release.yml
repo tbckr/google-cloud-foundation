@@ -19,47 +19,41 @@
 #
 # SPDX-License-Identifier: MIT
 
-default_language_version:
-  # force all unspecified python hooks to run python3
-  python: python3
+name: Github Release
 
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-      - id: check-added-large-files
-      - id: check-executables-have-shebangs
+on:
+  push:
+    # run only against tags
+    tags:
+      - 'v*'
 
-  # Text file hooks
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.33.0
-    hooks:
-      - id: markdownlint
-        args:
-          - --config=.mdl_config.yaml
-        files: \.(md|markdown)$
-        exclude: ^CHANGELOG.md$
+concurrency:
+  group: ${{ github.workflow }}-$${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
-  # GitHub Actions hooks
-  - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.22.0
-    hooks:
-      - id: check-github-workflows
-        files: ^\.github/workflows/.*\.ya?ml$
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Checkout repo
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - run: git fetch --force --tags
 
-  # Local hooks
-  - repo: local
-    hooks:
-      - id: license-header
-        name: add license header to files
-        entry: bash -c "task license-header"
-        language: system
-        pass_filenames: false
+      # Install necessary tools
+      - uses: actions/setup-go@v4
+        with:
+          go-version: 'stable'
+          cache: true
 
-  # Terraform hooks
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.20
-    hooks:
-      - id: terraform-fmt
-      - id: terraform-validate
-      - id: tflint
+      # Release with goreleaser
+      - uses: goreleaser/goreleaser-action@v4
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

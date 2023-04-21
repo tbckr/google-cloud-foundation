@@ -1,28 +1,10 @@
 # Changelog
-{{- range .Entries }}
-# v{{ .Semver }}
-{{ date_in_zone "2006-01-02" .Date "UTC" }}
+{{ range .Entries }}
+{{- $version := semver .Semver }}
+## {{ if and (gt $version.Major 0) (eq $version.Minor 0) (eq $version.Patch 0) }}⚠ {{end -}}{{ .Semver }} ({{ date_in_zone "2006-01-02" .Date "UTC" }})
 {{ range .Changes }}
-{{- $commit := substr 0 8 .Commit }}
-{{- range .ConventionalCommit.Footer }}
-{{- $line := splitList "\n" . }}
-{{- $first := "false" }}
-{{- $todo := "false" }}
-{{- range $line }}
-{{- if hasPrefix "issue #" . }}{{ else if hasPrefix "TODO: " . }}{{ $todo = "true" }}{{ else if hasPrefix "* Tags: " . }}{{ else if eq "" . }}{{ $todo = "false" }}{{ else if eq "..." .}}{{ else }}
-{{- if eq $todo "false" }}
-{{- if eq $first "true" }}
-{{ indent 12 . }}
-{{- else }}
-
-([{{ $commit }}](https://github.com/circonus-labs/circonus-kubernetes-agent/commit/{{ $commit }}))
-{{ indent 12 . }}
-{{- $first = "true" }}
+{{- if ne .ConventionalCommit.Category "chore" }}
+- {{ if eq .ConventionalCommit.Major true }}⚠ {{ end }}{{ .ConventionalCommit.Category }}: {{ .ConventionalCommit.Description }} ([{{substr 0 8 .Commit}}](https://github.com/tbckr/google-cloud-foundation/commit/{{ .Commit }}))
 {{- end }}
 {{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-
 {{ end }}

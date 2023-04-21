@@ -58,7 +58,7 @@ tasks:
         -ignore "**/.terragrunt-cache/**" \
         .
 
-  changelog:
+  changelog:generate:
     desc: Generate and update CHANGELOG.md
     vars:
       NEXT: '{{default "" .NEXT}}'
@@ -69,14 +69,20 @@ tasks:
 
   release:
     desc: Create a new tag with new semantic version and update CHANGELOG.md
+    aliases: [ "r" ]
     vars:
       NEXT:
         sh: svu n
     cmds:
-      - task: changelog
+      - task: changelog:generate
         vars:
           NEXT: '{{.NEXT}}'
       - "git commit -m \"chore: update CHANGELOG.md\""
-      # - git push
+      - git push
       - git tag {{.NEXT}}
-      # - git push --tags
+      - git push --tags
+
+  goreleaser:
+    desc: Run goreleaser to create a new release on GitHub
+    cmds:
+      - goreleaser release --clean

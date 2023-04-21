@@ -19,47 +19,37 @@
 #
 # SPDX-License-Identifier: MIT
 
-default_language_version:
-  # force all unspecified python hooks to run python3
-  python: python3
+builds:
+  - skip: true
 
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-      - id: check-added-large-files
-      - id: check-executables-have-shebangs
-
-  # Text file hooks
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.33.0
-    hooks:
-      - id: markdownlint
-        args:
-          - --config=.mdl_config.yaml
-        files: \.(md|markdown)$
-        exclude: ^CHANGELOG.md$
-
-  # GitHub Actions hooks
-  - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.22.0
-    hooks:
-      - id: check-github-workflows
-        files: ^\.github/workflows/.*\.ya?ml$
-
-  # Local hooks
-  - repo: local
-    hooks:
-      - id: license-header
-        name: add license header to files
-        entry: bash -c "task license-header"
-        language: system
-        pass_filenames: false
-
-  # Terraform hooks
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.20
-    hooks:
-      - id: terraform-fmt
-      - id: terraform-validate
-      - id: tflint
+changelog:
+  use: github
+  sort: asc
+  abbrev: 8
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^chore'
+      - 'merge conflict'
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+  groups:
+    - title: '⚠ BREAKING CHANGES'
+      regexp: '^.*?feat!(\([[:word:]]+\))??!?:.+$'
+      order: 80
+    - title: 'Features'
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 100
+    - title: 'Bug fixes'
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 200
+    - title: Dependency updates
+      regexp: '^.*?(feat|fix)\(deps\)!?:.+$'
+      order: 300
+    - title: 'Documentation updates'
+      regexp: ^.*?doc(\([[:word:]]+\))??!?:.+$
+      order: 400
+    - title: Other work
+      order: 9999
