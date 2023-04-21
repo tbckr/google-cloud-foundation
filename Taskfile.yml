@@ -58,7 +58,7 @@ tasks:
         -ignore "**/.terragrunt-cache/**" \
         .
 
-  changelog:generate:
+  changelog:
     desc: Generate and update CHANGELOG.md
     vars:
       NEXT: '{{default "" .NEXT}}'
@@ -74,7 +74,7 @@ tasks:
       NEXT:
         sh: svu n
     cmds:
-      - task: changelog:generate
+      - task: changelog
         vars:
           NEXT: '{{.NEXT}}'
       - "git commit -m \"chore: update CHANGELOG.md\""
