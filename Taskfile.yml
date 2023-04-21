@@ -59,7 +59,7 @@ tasks:
         .
 
   changelog:
-    desc: Generate and update CHANGELOG.md
+    desc: Updates CHANGELOG.md
     vars:
       NEXT: '{{default "" .NEXT}}'
     cmds:
