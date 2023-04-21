@@ -58,11 +58,14 @@ tasks:
         -ignore "**/.terragrunt-cache/**" \
         .
 
-  chglog:
-    desc: Initialize chglog configuration
+  changelog:
+    desc: Generate and update CHANGELOG.md
+    vars:
+      NEXT: '{{default "" .NEXT}}'
     cmds:
-      - chglog config
       - chglog init
+      - chglog add --version {{.NEXT}}
+      - chglog format --template-file .github/CHANGELOG.tmpl --output CHANGELOG.md
 
   release:
     desc: Create a new tag with new semantic version and update CHANGELOG.md
@@ -70,9 +73,10 @@ tasks:
       NEXT:
         sh: svu n
     cmds:
-      - chglog add --version {{.NEXT}}
-      - "chglog format --template-file \".github/CHANGELOG.tmpl\" --output CHANGELOG.md"
+      - task: changelog
+        vars:
+          NEXT: '{{.NEXT}}'
       - "git commit -m \"chore: update CHANGELOG.md\""
-      - git push
+      # - git push
       - git tag {{.NEXT}}
-      - git push --tags
+      # - git push --tags
