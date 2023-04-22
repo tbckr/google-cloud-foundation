@@ -4,7 +4,7 @@
 ## {{ if and (gt $version.Major 0) (eq $version.Minor 0) (eq $version.Patch 0) }}⚠ {{end -}}{{ .Semver }} ({{ date_in_zone "2006-01-02" .Date "UTC" }})
 {{ range .Changes }}
 {{- if ne .ConventionalCommit.Category "chore" }}
-- {{ if eq .ConventionalCommit.Major true }}⚠ {{ end }}{{ .ConventionalCommit.Category }}: {{ .ConventionalCommit.Description }} ([{{substr 0 8 .Commit}}](https://github.com/tbckr/google-cloud-foundation/commit/{{ .Commit }}))
+- {{ if eq .ConventionalCommit.Major true }}⚠ {{ end }}{{ .ConventionalCommit.Category }}{{ with .ConventionalCommit.Scope }}({{ . }}){{ end }}: {{ .ConventionalCommit.Description }} ([{{substr 0 8 .Commit}}](https://github.com/tbckr/google-cloud-foundation/commit/{{ .Commit }}))
 {{- end }}
 {{- end }}
 {{ end }}
