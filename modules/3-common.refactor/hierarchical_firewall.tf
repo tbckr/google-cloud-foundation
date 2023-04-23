@@ -15,7 +15,7 @@
  */
 
 module "hierarchical_firewall_policy" {
-  source = "../3-hierarchical_firewall_policy"
+  source = "../3-hierarchical-firewall-policy"
 
   parent = local.common_folder_name
   name   = "common-firewall-rules"
