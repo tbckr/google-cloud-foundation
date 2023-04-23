@@ -14,8 +14,8 @@ and may not represent the views of my employer.
 <!-- param::isNotitle::true:: -->
 
 - [Overview](#overview)
-- [Motivation](#motivation)
-- [Disclaimer](#disclaimer)
+- [Architecture](#architecture)
+- [Design Decisions](#design-decisions)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
