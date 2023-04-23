@@ -63,8 +63,6 @@ repos:
       - id: terraform-fmt
       - id: terraform-validate
       - id: tflint
-        args:
-          - "--recursive"
 
   - repo: https://github.com/terraform-docs/terraform-docs
     rev: "v0.16.0"
