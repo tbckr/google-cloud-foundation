@@ -13,7 +13,7 @@ and may not represent the views of my employer.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <!-- param::isNotitle::true:: -->
 
-- [Overview](#overview)
+- [Getting Started](#getting-started)
 - [Architecture](#architecture)
 - [Design Decisions](#design-decisions)
 
