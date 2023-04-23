@@ -68,8 +68,7 @@ tasks:
   lint:tf:
     desc: Lint terraform files
     cmds:
-      # TODO: this image does not work
-      - docker run --rm -v $(pwd):/data -t ghcr.io/terraform-linters/tflint-bundle
+      - tflint --recursive
 
   lint:
     desc: Lint all files
