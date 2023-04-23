@@ -58,6 +58,11 @@ tasks:
         -ignore "**/.terragrunt-cache/**" \
         .
 
+  terraform-docs:
+    desc: Inject terraform docs into README.md files
+    cmds:
+      - terraform-docs markdown table .
+
   clean:
     desc: Clean up
     cmds:
