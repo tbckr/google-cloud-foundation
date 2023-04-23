@@ -47,7 +47,7 @@ variable "create_access_context_manager_access_policy" {
 }
 
 variable "scc_notification_filter" {
-  description = "Filter used to create the Security Command Center Notification, you can see more details on how to create filters in https://cloud.google.com/security-command-center/docs/how-to-api-filter-notifications#create-filter"
+  description = "Filter used to create the Security Command Center Notification, you can see more details on how to create filters in [https://cloud.google.com/security-command-center/docs/how-to-api-filter-notifications#create-filter]"
   type        = string
   default     = "state = \"ACTIVE\""
 }
@@ -104,7 +104,8 @@ variable "project_budget" {
   alert_spent_percents: A list of percentages of the budget to alert on when threshold is exceeded.
   alert_pubsub_topic: The name of the Cloud Pub/Sub topic where budget related messages will be published, in the form of `projects/{project_id}/topics/{topic_id}`.
   EOT
-  type        = object({
+
+  type = object({
     dns_hub_budget_amount                   = optional(number, 1000)
     dns_hub_alert_spent_percents            = optional(list(number), [0.5, 0.75, 0.9, 0.95])
     dns_hub_alert_pubsub_topic              = optional(string, null)
@@ -143,7 +144,8 @@ variable "gcp_groups" {
   audit_viewer: Google Workspace or Cloud Identity group that members are part of an audit team and view audit logs in the logging project.
   global_secrets_admin: Google Workspace or Cloud Identity group that members are responsible for putting secrets into Secrets Manage
   EOT
-  type        = object({
+
+  type = object({
     platform_viewer      = optional(string, null)
     security_reviewer    = optional(string, null)
     network_viewer       = optional(string, null)
@@ -161,7 +163,8 @@ variable "gcp_user" {
   billing_creator: Identity that can create billing accounts.
   billing_admin: Identity that has billing administrator permissions.
   EOT
-  type        = object({
+
+  type = object({
     org_admin       = optional(string, null)
     billing_creator = optional(string, null)
     billing_admin   = optional(string, null)

@@ -67,7 +67,7 @@ dependency "common" {
 }
 
 terraform {
-  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/3-networks/base_shared_vpc"
+  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/3-base-shared-vpc"
 }
 
 locals {

@@ -53,7 +53,7 @@ include "root" {
 #}
 
 terraform {
-  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/0-bootstrap/seed"
+  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/0-seed"
 }
 
 inputs = {

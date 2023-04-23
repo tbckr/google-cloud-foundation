@@ -36,7 +36,8 @@ variable "project_budget" {
   alert_spent_percents: A list of percentages of the budget to alert on when threshold is exceeded.
   alert_pubsub_topic: The name of the Cloud Pub/Sub topic where budget related messages will be published, in the form of `projects/{project_id}/topics/{topic_id}`.
   EOT
-  type        = object({
+
+  type = object({
     base_network_budget_amount        = optional(number, 1000)
     base_network_alert_spent_percents = optional(list(number), [0.5, 0.75, 0.9, 0.95])
     base_network_alert_pubsub_topic   = optional(string, null)
@@ -46,14 +47,15 @@ variable "project_budget" {
 
 variable "assured_workload_configuration" {
   description = <<EOT
-  Assured Workload configuration. See https://cloud.google.com/assured-workloads ."
+  Assured Workload configuration.
   enabled: If the assured workload should be created.
   location: The location where the workload will be created.
   display_name: User-assigned resource display name.
-  compliance_regime: Supported Compliance Regimes. See https://cloud.google.com/assured-workloads/docs/reference/rest/Shared.Types/ComplianceRegime .
+  compliance_regime: Supported Compliance Regimes.
   resource_type: The type of resource. One of CONSUMER_FOLDER, KEYRING, or ENCRYPTION_KEYS_PROJECT.
   EOT
-  type        = object({
+
+  type = object({
     enabled           = optional(bool, false)
     location          = optional(string, "us-central1")
     display_name      = optional(string, "FEDRAMP-MODERATE")
