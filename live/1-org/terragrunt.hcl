@@ -58,7 +58,7 @@ EOF
 }
 
 terraform {
-  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/1-org/common"
+  source = "git::git@github.com/tbckr/google-cloud-foundation.git//modules/1-common"
 }
 
 inputs = {

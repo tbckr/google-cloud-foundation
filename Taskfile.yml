@@ -41,6 +41,7 @@ tasks:
       # - go install github.com/terraform-linters/tflint@latest
       - go install github.com/goreleaser/chglog/cmd/chglog@latest
       - go install github.com/caarlos0/svu@latest
+      - go install github.com/terraform-docs/terraform-docs@latest
 
   setup:
     desc: Setup development environment
@@ -56,6 +57,7 @@ tasks:
         -ignore ".idea/**" \
         -ignore ".task/**" \
         -ignore "**/.terragrunt-cache/**" \
+        -ignore "**/.terraform.lock.hcl" \
         .
 
   terraform-docs:

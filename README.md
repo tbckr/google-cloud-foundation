@@ -1,7 +1,11 @@
-# Google Cloud Foundation (Personal Edition & Work in Progress)
+# Opinionated Google Cloud Foundation
 
 This repository contains my customized, opinionated version of the Google Cloud Foundation based on the Cloud Foundation
 Toolkit (CFT). Please be aware that this is a personal adaptation and may not suit everyone's needs.
+
+**Disclaimer:** Please note that I am not affiliated with Google in any capacity. I assume no responsibility for any
+damages that may arise from using this repository; use it at your own risk. Additionally, these are my personal opinions
+and may not represent the views of my employer.
 
 ## Table of Contents
 
@@ -34,21 +38,15 @@ While this repository is opinionated and may not be a one-size-fits-all solution
 and others who are interested. I have made an effort to document everything thoroughly, but if you have any questions,
 feel free to open an issue, and I will respond as soon as possible.
 
-## Motivation
+## Architecture
 
-As someone who has been working with Google Cloud for some time and utilizing the Google Cloud Foundation Toolkit, I
-have consistently relied on the Terraform Example Foundation for my projects, tailoring it to meet my specific needs.
-Through this guide, my aim is to simplify my workflow and make it easier for others to get started. I have also strived
-to enhance the code by minimizing duplications and integrating new concepts and best practices.
+TODO
 
-## Disclaimer
+## Design Decisions
 
-Please note that I am not affiliated with Google in any capacity. I am merely a Google Cloud user attempting to
-streamline my work. I assume no responsibility for any damages that may arise from using this repository; use it at your
-own risk.
+TODO
 
-Additionally, these are my personal opinions and may not represent the views of my employer.
-
+<!-- The following comments do not mean anything. They are just an artifact of the terraform-docs tool -->
 <!-- BEGIN_TF_DOCS -->
 
 <!-- END_TF_DOCS -->

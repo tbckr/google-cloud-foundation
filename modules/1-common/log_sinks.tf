@@ -36,7 +36,7 @@ resource "random_string" "suffix" {
 }
 
 module "logs_export" {
-  source = "../centralized-logging"
+  source = "../1-centralized-logging"
 
   resources                      = local.parent_resources
   resource_type                  = local.parent_resource_type

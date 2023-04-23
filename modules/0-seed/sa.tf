@@ -130,7 +130,7 @@ resource "google_service_account_iam_member" "terraform-env-sa-token-creator" {
 }
 
 module "org_iam_member" {
-  source   = "../parent-iam-member"
+  source   = "../0-parent-iam-member"
   for_each = local.granular_sa_org_level_roles
 
   member      = "serviceAccount:${google_service_account.terraform-env-sa[each.key].email}"
@@ -140,7 +140,7 @@ module "org_iam_member" {
 }
 
 module "parent_iam_member" {
-  source   = "../parent-iam-member"
+  source   = "../0-parent-iam-member"
   for_each = local.granular_sa_parent_level_roles
 
   member      = "serviceAccount:${google_service_account.terraform-env-sa[each.key].email}"
@@ -150,7 +150,7 @@ module "parent_iam_member" {
 }
 
 module "seed_project_iam_member" {
-  source   = "../parent-iam-member"
+  source   = "../0-parent-iam-member"
   for_each = local.granular_sa_seed_project
 
   member      = "serviceAccount:${google_service_account.terraform-env-sa[each.key].email}"
@@ -165,7 +165,7 @@ module "seed_project_iam_member" {
 // only member with the editor role.
 // This module will remove all editors from both projects.
 module "bootstrap_projects_remove_editor" {
-  source = "../parent-iam-remove-role"
+  source = "../0-parent-iam-remove-role"
 
   parent_type = "project"
   parent_id   = module.seed_bootstrap.seed_project_id
