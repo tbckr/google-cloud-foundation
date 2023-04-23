@@ -48,3 +48,7 @@ streamline my work. I assume no responsibility for any damages that may arise fr
 own risk.
 
 Additionally, these are my personal opinions and may not represent the views of my employer.
+
+<!-- BEGIN_TF_DOCS -->
+
+<!-- END_TF_DOCS -->

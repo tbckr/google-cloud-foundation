@@ -41,3 +41,4 @@ sort:
 settings:
   anchor: false
   html: false
+  hide-empty: true
