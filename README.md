@@ -19,7 +19,7 @@ and may not represent the views of my employer.
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Overview
+## Getting Started
 
 This repository consists of Terraform modules and code inspired by
 the [Google Cloud Foundation Toolkit](https://cloud.google.com/foundation-toolkit). The CFT is one
