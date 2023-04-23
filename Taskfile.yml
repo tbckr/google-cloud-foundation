@@ -60,6 +60,23 @@ tasks:
         -ignore "**/.terraform.lock.hcl" \
         .
 
+  lint:md:
+    desc: Lint markdown files
+    cmds:
+      - docker run --rm --pull always -v $(pwd):/app:ro ghcr.io/tbckr/markdownlint:18 . --config=.mdl_config.yaml
+
+  lint:tf:
+    desc: Lint terraform files
+    cmds:
+      # TODO: this image does not work
+      - docker run --rm -v $(pwd):/data -t ghcr.io/terraform-linters/tflint-bundle
+
+  lint:
+    desc: Lint all files
+    cmds:
+      - task: lint:md
+      - task: lint:tf
+
   terraform-docs:
     desc: Inject terraform docs into README.md files
     cmds:
