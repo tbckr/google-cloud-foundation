@@ -44,7 +44,7 @@ repos:
     rev: v0.1.2
     hooks:
       - id: addlicense
-        args: [ "-c=tbckr", "-l=MIT", "-s" ]
+        args: [ "-c='Tim <tbckr>'", "-l=MIT", "-s", "-v" ]
 
   # GitHub Actions hooks
   - repo: https://github.com/python-jsonschema/check-jsonschema
