@@ -40,18 +40,21 @@ repos:
         files: \.(md|markdown)$
         exclude: ^CHANGELOG.md$
 
-  - repo: https://github.com/tbckr/pre-commit
-    rev: v0.1.2
-    hooks:
-      - id: addlicense
-        args: [ "-c='Tim <tbckr>'", "-l=MIT", "-s", "-v" ]
-
   # GitHub Actions hooks
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.22.0
     hooks:
       - id: check-github-workflows
         files: ^\.github/workflows/.*\.ya?ml$
+
+  # Local hooks
+  - repo: local
+    hooks:
+      - id: license-header
+        name: add license header to files
+        entry: bash -c "task license-header"
+        language: system
+        pass_filenames: false
 
   # Terraform hooks
   - repo: https://github.com/gruntwork-io/pre-commit
