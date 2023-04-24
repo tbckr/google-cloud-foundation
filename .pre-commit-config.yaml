@@ -62,6 +62,10 @@ repos:
     hooks:
       - id: terraform-fmt
       - id: terraform-validate
+
+  - repo: https://github.com/mineiros-io/pre-commit-hooks
+    rev: v0.5.0
+    hooks:
       - id: tflint
 
   - repo: https://github.com/terraform-docs/terraform-docs
