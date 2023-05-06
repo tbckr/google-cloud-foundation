@@ -349,8 +349,8 @@ github.com/googleapis/gax-go/v2 v2.7.0 h1:IcsPKeInNvYi7eqSaDjiZqDDKu5rsmunY0Y1Yu
 github.com/googleapis/gax-go/v2 v2.7.0/go.mod h1:TEop28CZZQ2y+c0VxMUmu1lV+fQx57QpBWsYpwqHJx8=
 github.com/googleapis/go-type-adapters v1.0.0/go.mod h1:zHW75FOG2aur7gAO2B+MLby+cLsWGBF62rFAi7WjWO4=
 github.com/grpc-ecosystem/grpc-gateway v1.16.0/go.mod h1:BDjrQk3hbvj6Nolgz8mAMFbcEtjT1g+wF4CSlocrBnw=
-github.com/gruntwork-io/terratest v0.41.18 h1:xFLF9c6bQ/dpcRera3Bbn1D5RJE+NyRXRndtV/Mjiuc=
-github.com/gruntwork-io/terratest v0.41.18/go.mod h1:O6gajNBjO1wvc7Wl9WtbO+ORcdnhAV2GQiBE71ycwIk=
+github.com/gruntwork-io/terratest v0.41.21 h1:7rbSstOYbK4TpfShf/W/TND/aVLUHmaRyiZTjVgSKdY=
+github.com/gruntwork-io/terratest v0.41.21/go.mod h1:O6gajNBjO1wvc7Wl9WtbO+ORcdnhAV2GQiBE71ycwIk=
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/errwrap v1.1.0 h1:OxrOeh75EUXMY8TBjag2fzXGZ40LB6IKw45YeGUDY2I=
 github.com/hashicorp/errwrap v1.1.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
@@ -434,8 +434,8 @@ github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.2 h1:+h33VjcLVPDHtOdpUCuF+7gSuG3yGIftsP1YvFihtJ8=
 github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
-github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230427013807-e6089046d93b h1:2Wh3YmNyn/IFU6WT1AKxMrNPT+8PS2LahCOumMrKJjA=
-github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230427013807-e6089046d93b/go.mod h1:4EkFeYb9/Cjbqc4uynVvcmV8MCK7VK5dGuR2yD4r8EU=
+github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230506052500-3b49ef840184 h1:7MM2oiFCgJpavoSncM5ZpasHFB4xPu3hD9ulrHuqIQg=
+github.com/terraform-google-modules/terraform-example-foundation/test/integration v0.0.0-20230506052500-3b49ef840184/go.mod h1:4EkFeYb9/Cjbqc4uynVvcmV8MCK7VK5dGuR2yD4r8EU=
 github.com/tidwall/gjson v1.14.2/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
 github.com/tidwall/gjson v1.14.4 h1:uo0p8EbA09J7RQaflQ1aBRffTR7xedD2bcIVSYxLnkM=
 github.com/tidwall/gjson v1.14.4/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
