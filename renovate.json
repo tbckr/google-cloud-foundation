@@ -3,7 +3,9 @@
   "extends": [
     "config:base",
     ":semanticCommits",
-    ":preserveSemverRanges"
+    ":preserveSemverRanges",
+    ":enablePreCommit",
+    "helpers:pinGitHubActionDigests"
   ],
   "stabilityDays": 7,
   "ignorePaths": [],
@@ -11,6 +13,7 @@
     "dependencies"
   ],
   "vulnerabilityAlerts": {
+    "enabled": true,
     "labels": [
       "type:security"
     ],
