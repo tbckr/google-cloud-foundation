@@ -36,7 +36,7 @@ Here are some useful resources related to the Google Cloud Foundation Toolkit:
 
 While this repository is opinionated and may not be a one-size-fits-all solution, it can serve as a reference for myself
 and others who are interested. I have made an effort to document everything thoroughly, but if you have any questions,
-feel free to open an issue, and I will respond as soon as possible.
+feel free to open an issue.
 
 ## Architecture
 
